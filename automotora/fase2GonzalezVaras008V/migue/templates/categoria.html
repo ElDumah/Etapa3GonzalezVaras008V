@@ -1,0 +1,58 @@
+
+    <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url();">
+      <div class="container">
+        <div class="row same-height justify-content-center">
+          <div class="col-md-12 col-lg-10">
+            <div class="post-entry text-center">
+              <span class="post-category text-white bg-success mb-3">NOMBRE CATEGORIA</span>
+              <h1 class="mb-4"><a href="{{ request.build_absolute.url }}">NOMBRE CATEGORIA MAYUSCULA</a></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="site-section py-lg">
+      <div class="container">
+
+        <div class="row blog-entries element-animate mb-5">
+
+          <div class="col-md-12 col-lg-12 main-content">
+              <div class="entry2 mb-5">
+                <a href="single.html"><img src="IMAGEN REFERENCIAL" alt="Image" class="img-fluid rounded"></a>
+                <span class="post-category text-white bg-primary mb-3">NOMBRE CATEGORIA</span>
+                <h2><a href="single.html">TITULO</a></h2>
+                <div class="post-meta align-items-center text-left clearfix">
+                  <figure class="author-figure mb-0 mr-3 float-left"><img src="images/person_1.jpg" alt="Image" class="img-fluid"></figure>
+                  <span class="d-inline-block mt-1">POR <a href="#">AUTOR</a></span>
+                  <span>FECHA</span>
+                </div>
+                <p>DESCRIPCION</p>
+              </div>
+            
+            <div class="row text-center pt-5 border-top">
+              <div class="col-md-12">
+                <div class="custom-pagination">
+                  Página {{ posts.number }} de {{ posts.paginator.num_pages }}
+                  {% if posts.has_previous %}
+                  <li>
+                    <a href="?page={{ posts.previous_page_number }}">{{ posts.previous_page_number }}</a>
+                  </li>
+                  {% endif %}
+                  {% if posts.has_next %}
+                  <li>
+                    <a href="?page={{ posts.next_page_number }}">{{ posts.next_page_number }}</a>
+                  </li>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- END main-content -->
+
+        </div>
+      </div>
+    </section>
+
