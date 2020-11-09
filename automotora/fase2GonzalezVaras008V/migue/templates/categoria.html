@@ -1,11 +1,15 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} {{ categoria |upper }}  {% endblock titulo %}
 
-    <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url();">
+{% block cuerpo %}
+    <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url({{ categoria.imagen_referencial.url }});">
       <div class="container">
         <div class="row same-height justify-content-center">
           <div class="col-md-12 col-lg-10">
             <div class="post-entry text-center">
-              <span class="post-category text-white bg-success mb-3">NOMBRE CATEGORIA</span>
-              <h1 class="mb-4"><a href="{{ request.build_absolute.url }}">NOMBRE CATEGORIA MAYUSCULA</a></h1>
+              <span class="post-category text-white bg-success mb-3">{{ categoria | upper }}</span>
+              <h1 class="mb-4"><a href="{{ request.build_absolute.url }}">{{ categoria | upper }}</a></h1>
             </div>
           </div>
         </div>
@@ -18,18 +22,19 @@
         <div class="row blog-entries element-animate mb-5">
 
           <div class="col-md-12 col-lg-12 main-content">
+            {% for post in posts %}
               <div class="entry2 mb-5">
-                <a href="single.html"><img src="IMAGEN REFERENCIAL" alt="Image" class="img-fluid rounded"></a>
-                <span class="post-category text-white bg-primary mb-3">NOMBRE CATEGORIA</span>
-                <h2><a href="single.html">TITULO</a></h2>
+                <a href="single.html"><img src="{{ post.imagen_referencial.url }}" alt="Image" class="img-fluid rounded"></a>
+                <span class="post-category text-white bg-primary mb-3">{{ post.categoria }}</span>
+                <h2><a href="single.html">{{ post.titulo }}</a></h2>
                 <div class="post-meta align-items-center text-left clearfix">
-                  <figure class="author-figure mb-0 mr-3 float-left"><img src="images/person_1.jpg" alt="Image" class="img-fluid"></figure>
-                  <span class="d-inline-block mt-1">POR <a href="#">AUTOR</a></span>
-                  <span>FECHA</span>
+                  <figure class="author-figure mb-0 mr-3 float-left"><img src="{{ post.cliente.imagen_referencial.url }}" alt="Image" class="img-fluid"></figure>
+                  <span class="d-inline-block mt-1">POR <a href="#">{{ post.modelo }}</a></span>
+                  <span>{{ post.fecha_publicacion }}</span>
                 </div>
-                <p>DESCRIPCION</p>
+                <p>{{ post.descripcion }}</p>
               </div>
-            
+            {% endfor %}
             <div class="row text-center pt-5 border-top">
               <div class="col-md-12">
                 <div class="custom-pagination">
@@ -55,4 +60,4 @@
         </div>
       </div>
     </section>
-
+  {% endblock cuerpo %}

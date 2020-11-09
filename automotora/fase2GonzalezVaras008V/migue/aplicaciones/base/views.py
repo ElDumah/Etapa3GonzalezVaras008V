@@ -1,20 +1,10 @@
 import random
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView,View
+from django.core.paginator import Paginator
 from .models import Post,Categoria,RedesSociales,Web
+from .utils import *
 
-
-def consulta(id):
-    try:
-        return Post.objects.get(id = id)
-    except:
-        return None
-
-def obtenerRedes():
-    return RedesSociales.objects.filter(estado = True).latest('fecha_creacion')
-
-def obtenerWeb():
-    return Web.objects.filter(estado = True).latest('fecha_creacion')
 
 class Inicio(ListView):
 
@@ -68,3 +58,20 @@ class Inicio(ListView):
         }
 
         return render(request,'index.html',contexto)
+
+class Listado(ListView):
+
+ def get(self,request,nombre_categoria,*args,**kwargs):
+        contexto = generarCategoria(request,nombre_categoria)
+        return render(request,'categoria.html',contexto)
+
+class FormularioContacto(View):
+    def get(self,request,*args,**kwargs):
+        form = ContactoForm()
+        contexto = {
+            'sociales':obtenerRedes(),
+            'web':obtenerWeb(),
+            'form':form,
+
+        }
+        return render (request,'contacto.html',contexto)

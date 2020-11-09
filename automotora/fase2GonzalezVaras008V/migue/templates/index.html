@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Automotora Miguelito</title>
+    <title>{% block titulo %} Automotora Miguelito {% endblock titulo %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900" rel="stylesheet"> 
 
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extracss %}
+    {% endblock extracss %}
   </head>
   <body>
   
@@ -55,16 +57,16 @@
 
               <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block mb-0">
                 <li class="active"><a href="">Inicio</a></li>
-                <li><a href="">Usados</a></li>
-                <li><a href="">Nuevos</a></li>
-                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'base:usado' %}">Usados</a></li>
+                <li><a href="{% url 'base:nuevo' %}">Nuevos</a></li>
+                <li><a href="{% url 'base:formulario_contacto' %}">Contacto</a></li>
               </ul>
             </nav>
           </div>
         </div>
     </header>
 
-    
+  {% block cuerpo %}  
     <div class="slide-one-item home-slider owl-carousel">
       <div class="site-cover site-cover-sm same-height overlay" style="background-image: url({{ principal.imagen_referencial.url }});">
         <div class="container">
@@ -169,7 +171,9 @@
         </div>
       </div>
     </div>
- 
+
+  {% endblock cuerpo %} 
+
     <div class="site-footer">
       <div class="container">
         <div class="row mb-5">
@@ -234,7 +238,7 @@
   <script src="{% static 'js/aos.js' %}"></script>
  
   <script src="{% static 'js/main.js' %}"></script>
- 
- 
+ {% block extrajs %}
+ {% endblock extrajs %}
   </body>
  </html>
