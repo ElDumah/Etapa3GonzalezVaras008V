@@ -4,6 +4,7 @@ from django.views.generic import ListView,View
 from django.core.paginator import Paginator
 from .models import Post,Categoria,RedesSociales,Web
 from .utils import *
+from .forms import ContactoForm
 
 
 class Inicio(ListView):
