@@ -1,3 +1,9 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} {{% post.titulo %}} | Miguelitos  {% endblock titulo %}
+
+{% block cuerpo %}
+
    <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url({);">
       <div class="container">
         <div class="row same-height justify-content-center">
@@ -123,4 +129,4 @@
       <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
     </section>
-
+{% endblock cuerpo %}

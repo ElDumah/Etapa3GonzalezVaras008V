@@ -1,6 +1,6 @@
 import random
-from django.shortcuts import render
-from django.views.generic import ListView,View
+from django.shortcuts import render,redirect
+from django.views.generic import ListView,View,DetailView
 from django.core.paginator import Paginator
 from .models import Post,Categoria,RedesSociales,Web
 from .utils import *
@@ -76,3 +76,15 @@ class FormularioContacto(View):
 
         }
         return render (request,'contacto.html',contexto)
+
+    def post(self,request,*args,**kwargs):
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('base:index')
+        else:
+            contexto = {
+                'form':form,
+            }
+            return render(request,'contacto.html',contexto)     
+
