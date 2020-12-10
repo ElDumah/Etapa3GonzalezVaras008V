@@ -57,9 +57,16 @@
 
               <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block mb-0">
                 <li class="active"><a href="">Inicio</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="#">Usuario: {{ user.username }}</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
                 <li><a href="{% url 'base:usado' %}">Usados</a></li>
                 <li><a href="{% url 'base:nuevo' %}">Nuevos</a></li>
                 <li><a href="{% url 'base:formulario_contacto' %}">Contacto</a></li>
+                {%else%}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
               </ul>
             </nav>
           </div>
