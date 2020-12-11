@@ -33,3 +33,8 @@ class ClienteModelTest(TestCase):
         usuario=Usuario.objects.get(id=1)
         max_length = usuario._meta.get_field('Apellido').max_length
         self.assertEquals(max_length,16)
+
+    def UserRegisterView(self):
+        Nombre=Nombre.objects.get(id=1)
+        max_length = usuario._meta.get_field('usuario').max_length
+        Password_length = usuario._meta.get_field(Password).max_length
